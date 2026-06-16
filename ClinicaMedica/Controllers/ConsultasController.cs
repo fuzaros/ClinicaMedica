@@ -1,7 +1,8 @@
 
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using ClinicaMedica.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 public class ConsultasController : Controller
 {
@@ -15,7 +16,11 @@ public class ConsultasController : Controller
     // GET: CONSULTAS
     public async Task<IActionResult> Index()    
     {
-        return View(await _context.Consulta.ToListAsync());
+        var consultas = await _context.Consulta
+                                  .Include(c => c.Paciente)
+                                  .ToListAsync();
+
+        return View(consultas);
     }
 
     // GET: CONSULTAS/Details/5
@@ -27,6 +32,7 @@ public class ConsultasController : Controller
         }
 
         var consulta = await _context.Consulta
+            .Include(c => c.Paciente)
             .FirstOrDefaultAsync(m => m.Id == id);
         if (consulta == null)
         {
@@ -39,6 +45,7 @@ public class ConsultasController : Controller
     // GET: CONSULTAS/Create
     public IActionResult Create()
     {
+        ViewData["PacienteId"] = new SelectList(_context.Paciente, "Id", "Nome");
         return View();
     }
 
@@ -47,7 +54,7 @@ public class ConsultasController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,PacienteId,Paciente,NomeMedico,DataHora,Observacoes")] Consulta consulta)
+    public async Task<IActionResult> Create([Bind("Id,PacienteId,Especialidade,NomeMedico,DataHora,Observacoes")] Consulta consulta)
     {
         if (ModelState.IsValid)
         {

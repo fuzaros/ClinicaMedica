@@ -13,10 +13,12 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group">
-                <label asp-for="Paciente" class="control-label"></label>
-                <input asp-for="Paciente" class="form-control" />
-                <span asp-validation-for="Paciente" class="text-danger"></span>
+            <div class="form-group mb-3">
+                <label asp-for="PacienteId" class="control-label fw-bold">Paciente</label>
+                <select asp-for="PacienteId" class="form-control" asp-items="ViewBag.PacienteId">
+                    <option value="">-- Selecione o Paciente --</option>
+                </select>
+                <span asp-validation-for="PacienteId" class="text-danger"></span>
             </div>
 
             <div class="form-group mb-3">
