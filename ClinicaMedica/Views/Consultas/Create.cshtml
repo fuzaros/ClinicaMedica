@@ -1,0 +1,61 @@
+@model ClinicaMedica.Models.Consulta
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Consulta</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Paciente" class="control-label"></label>
+                <input asp-for="Paciente" class="form-control" />
+                <span asp-validation-for="Paciente" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Especialidade" class="control-label fw-bold"></label>
+                <select asp-for="Especialidade" class="form-control">
+                    <option value="">-- Selecione a Especialidade --</option>
+                    <option value="Odontologia">Odontologia</option>
+                    <option value="Otorrinolaringologia">Otorrinolaringologia</option>
+                    <option value="Ortopedia">Ortopedia</option>
+                    <option value="Pediatria">Pediatria</option>
+                    <option value="Clínica Geral">Clínica Geral</option>
+                </select>
+                <span asp-validation-for="Especialidade" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NomeMedico" class="control-label"></label>
+                <input asp-for="NomeMedico" class="form-control" />
+                <span asp-validation-for="NomeMedico" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DataHora" class="control-label"></label>
+                <input asp-for="DataHora" class="form-control" />
+                <span asp-validation-for="DataHora" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Observacoes" class="control-label"></label>
+                <input asp-for="Observacoes" class="form-control" />
+                <span asp-validation-for="Observacoes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
