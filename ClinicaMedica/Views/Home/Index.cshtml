@@ -1,8 +1,107 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Página Inicial";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container py-4">
+    <!-- Boas-vindas -->
+    <div class="p-5 mb-4 bg-light rounded-3 shadow-sm border-start border-primary border-5">
+        <div class="container-fluid py-2">
+            <h1 class="display-5 fw-bold text-dark">Clínica Médica Gomes</h1>
+            <p class="col-md-8 fs-5 text-secondary">
+                Bem-vindo ao sistema de gestão clínica. Monitore atendimentos, gerencie pacientes e emita prontuários de forma rápida e centralizada.
+            </p>
+        </div>
+    </div>
+
+    <!-- Cards de Indicadores -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-6">
+            <div class="card h-100 border-0 shadow-sm bg-gradient text-white" style="background-color: #1f4e78;">
+                <div class="card-body d-flex align-items-center justify-content-between p-4">
+                    <div>
+                        <h6 class="text-uppercase fw-bold opacity-75 mb-2">Pacientes Cadastrados</h6>
+                        <h2 class="display-4 fw-bold mb-0">@ViewBag.TotalPacientes</h2>
+                    </div>
+                    <div class="fs-1 opacity-50">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+                </div>
+                <div class="card-footer bg-black bg-opacity-10 border-0 py-3">
+                    <a asp-controller="Pacientes" asp-action="Index" class="text-white text-decoration-none d-flex align-items-center justify-content-between small">
+                        <span>Gerenciar Pacientes</span>
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card h-100 border-0 shadow-sm bg-gradient text-white" style="background-color: #2e7d32;">
+                <div class="card-body d-flex align-items-center justify-content-between p-4">
+                    <div>
+                        <h6 class="text-uppercase fw-bold opacity-75 mb-2">Consultas Agendadas</h6>
+                        <h2 class="display-4 fw-bold mb-0">@ViewBag.TotalConsultas</h2>
+                    </div>
+                    <div class="fs-1 opacity-50">
+                        <i class="bi bi-calendar-check-fill"></i>
+                    </div>
+                </div>
+                <div class="card-footer bg-black bg-opacity-10 border-0 py-3">
+                    <a asp-controller="Consultas" asp-action="Index" class="text-white text-decoration-none d-flex align-items-center justify-content-between small">
+                        <span>Acessar Consultas</span>
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seção de Ações Rápidas -->
+    <div class="row">
+        <div class="col-12">
+            <h4 class="fw-bold text-dark mb-4">Ações Rápidas</h4>
+        </div>
+
+        <!-- Card: Novo Paciente -->
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4 text-center">
+                    <div class="p-3 bg-primary bg-opacity-10 text-primary rounded-circle d-inline-block mb-3" style="width: 60px; height: 60px; line-height: 30px;">
+                        <i class="bi bi-person-circle fs-3"></i>
+                    </div>
+                    <h5 class="fw-bold">Novo Paciente</h5>
+                    <p class="text-muted small">Cadastre um novo paciente para iniciar o histórico médico.</p>
+                    <a asp-controller="Pacientes" asp-action="Create" class="btn btn-outline-primary btn-sm w-100">Adicionar</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: Nova Consulta -->
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4 text-center">
+                    <div class="p-3 bg-success bg-opacity-10 text-success rounded-circle d-inline-block mb-3" style="width: 60px; height: 60px; line-height: 30px;">
+                        <i class="bi bi-clipboard2-pulse fs-3"></i>
+                    </div>
+                    <h5 class="fw-bold">Nova Consulta</h5>
+                    <p class="text-muted small">Agende um atendimento vinculando paciente e especialidade.</p>
+                    <a asp-controller="Consultas" asp-action="Create" class="btn btn-outline-success btn-sm w-100">Agendar</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: Relatórios -->
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4 text-center">
+                    <div class="p-3 bg-warning bg-opacity-10 text-warning rounded-circle d-inline-block mb-3" style="width: 60px; height: 60px; line-height: 30px;">
+                        <i class="bi bi-file-earmark-bar-graph fs-3"></i>
+                    </div>
+                    <h5 class="fw-bold">Relatórios</h5>
+                    <p class="text-muted small">Extraia os dados da clínica consolidados em formato Excel.</p>
+                    <a asp-controller="Consultas" asp-action="Index" class="btn btn-outline-warning btn-sm w-100">Ver Listagem</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
